@@ -1,20 +1,25 @@
 # Maintainer:   jeffskinnerbox@yahoo.com / www.jeffskinnerbox.me
-# Version:      0.1
+# Version:      0.2
 #
-# Commands in this file are used to set options, bind screen functions to
-# keys, redefine terminal capabilities, and to automatically establish one or
-# more windows at the beginning of your screen session.
+# DESCRIPTION:
+#      Commands in this file are used to set options, bind screen functions to
+#      keys, redefine terminal capabilities, and to automatically establish one or
+#      more windows at the beginning of your screen session.
+#
+#      This file can be over-riden via specifing a resource file on the commandline.
+#      For example, to use the default resource file in /etc, do the following
+#                 screen -c /etc/screenrc /dev/ttyUSB0 9600
 #
 # NOTE:
-#        If there is an error in your .screenrc file, it appears that screen
-#        ignores the file silently.
+#      If there is an error in your .screenrc file, it appears that screen
+#      ignores the file silently.
 #
-# SOURCES: 
-#        http://aperiodic.net/screen/commands:start
-#        http://www.computerhope.com/unix/screen.htm
-#        https://www.gnu.org/software/screen/manual/html_node/index.html
-#        https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
-#        https://www.digitalocean.com/community/tutorials/how-to-install-and-use-screen-on-an-ubuntu-cloud-server
+# SOURCES:
+#      http://aperiodic.net/screen/commands:start
+#      http://www.computerhope.com/unix/screen.htm
+#      https://www.gnu.org/software/screen/manual/html_node/index.html
+#      https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
+#      https://www.digitalocean.com/community/tutorials/how-to-install-and-use-screen-on-an-ubuntu-cloud-server
 
 
 # ------------------------------------------------------------------------------
@@ -54,7 +59,7 @@ multiuser off
 # when monitoring is turned on and an affected window is switched into the background,
 # you will receive the activity notification message in the status line
 # at the first sign of output and the window will also be marked with an '@'
-# in the window-status display 
+# in the window-status display
 # Requires suid-root.
 monitor off
 
@@ -99,8 +104,13 @@ bind } history
 # Start Screen numbering at 1 instead of 0
 bind c screen 1
 bind ^c screen 1
-bind 0 select 10                                                            
+bind 0 select 10
 screen 1
+
+# ^A D (uppercase) switch on, and
+# ^A U (uppercase) switch off, converting
+bind D bindkey "\015" stuff "\015\012"
+bind U bindkey "\015" stuff "\015"
 
 
 
@@ -143,11 +153,14 @@ termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
 # To get screen to add lines to xterm's scrollback buffer, uncomment the
 # following termcapinfo line which tells xterm to use the normal screen buffer
 # (which has scrollback), not the alternate screen buffer.
-#
-#termcapinfo xterm|xterms|xs|rxvt ti@:te@
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
 
 # Enable non-blocking mode to better cope with flaky ssh connections.
 defnonblock 5
+
+# if it is set to ‘on’, lines will be separated by the two character sequence ‘CR’/‘LF’
+# otherwise only ‘LF’ is used. crlf is off by default.
+crlf on
 
 
 
@@ -168,12 +181,12 @@ defnonblock 5
 #
 # SSH to a server via public IP
 #bind S screen -t 'servername' ssh username@server.com
- 
+
 # Open rTorrent
 #bind R screen -t 'rtorrent' rtorrent
- 
+
 # Open a Text web browser at Google
 #bind L screen -t 'Lynx' lynx http://www.google.com/
- 
+
 # Open an IRC window
 #bind I screen -t 'irssi' irssi
