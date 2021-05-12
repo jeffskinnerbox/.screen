@@ -20,6 +20,7 @@
 #      https://www.gnu.org/software/screen/manual/html_node/index.html
 #      https://www.rackaid.com/blog/linux-screen-tutorial-and-how-to/
 #      https://www.digitalocean.com/community/tutorials/how-to-install-and-use-screen-on-an-ubuntu-cloud-server
+#      https://opensource.com/article/21/4/gnu-screen-cheat-sheet
 
 
 # ------------------------------------------------------------------------------
@@ -128,6 +129,7 @@ caption always
 # turn sending of screen messages to hardstatus
 hardstatus on
 hardstatus alwayslastline
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b yk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%m/%d %{W}%C%A%{g}]'
 #hardstatus string "%{= wk}%h%? users: %u%?"
 #hardstatus string "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 #hardstatus string "%{= kg}[ %{G}%H%{g} ] %{-b ..}%-w%{+b ..}[%n*%t]%{-}%+w %-= %{kG}%C%a  %{kg}%D %d-%m-%Y%{=}"
